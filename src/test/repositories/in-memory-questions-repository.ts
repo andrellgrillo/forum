@@ -1,7 +1,7 @@
 import { QuestionsRepository } from '@/domain/forum/applicaton/repositories/questions-repository'
 import { Question } from '@/domain/forum/enterprise/entities/question'
 
-export class InMemoryQuestionRepository implements QuestionsRepository {
+export class InMemoryQuestionsRepository implements QuestionsRepository {
   public items: Question[] = []
 
   async findBySlug(slug: string) {
