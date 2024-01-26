@@ -39,6 +39,7 @@ export class Answer extends Entity<AnswerProps> {
     this.props.updatedAt = new Date()
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   set content(content: string) {
     this.props.content = content
     this.touch()
@@ -51,7 +52,7 @@ export class Answer extends Entity<AnswerProps> {
     const answer = new Answer(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
