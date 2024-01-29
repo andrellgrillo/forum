@@ -25,7 +25,7 @@ export class DeleteQuestionCommentsUseCase {
     const questionComment =
       await this.questionCommentsRepository.findById(questionCommentId)
     if (!questionComment) {
-      console.log(questionComment)
+      // console.log(questionComment)
       return left(new ResourceNotFoundError())
     }
 

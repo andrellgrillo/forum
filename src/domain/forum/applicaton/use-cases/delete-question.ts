@@ -28,8 +28,6 @@ export class DeleteQuestionUseCase {
     }
 
     if (authorId !== question.authorId.toString()) {
-      console.log(authorId)
-      console.log(question.authorId.toString())
       return left(new NotAllowedError())
     }
 
