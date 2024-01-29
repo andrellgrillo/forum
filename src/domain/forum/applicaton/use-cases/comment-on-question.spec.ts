@@ -1,7 +1,7 @@
-import { InMemoryQuestionCommentsRepository } from '@/test/repositories/in-memory-question-comment-repository'
+import { InMemoryQuestionCommentsRepository } from 'test/repositories/in-memory-question-comment-repository'
 import { CommentOnQuestionUseCase } from './comment-on-question'
-import { InMemoryQuestionsRepository } from '@/test/repositories/in-memory-questions-repository'
-import { makeQuestion } from '@/test/factories/make-question'
+import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
+import { makeQuestion } from 'test/factories/make-question'
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository

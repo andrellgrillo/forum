@@ -1,6 +1,6 @@
 import { EditAnswerUseCase } from './edit-answer'
-import { InMemoryAnswersRepository } from '@/test/repositories/in-memory-answer-repository'
-import { makeAnswer } from '@/test/factories/make-answer'
+import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
+import { makeAnswer } from 'test/factories/make-answer'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { NotAllowedError } from './errors/not-allowed-error'
 

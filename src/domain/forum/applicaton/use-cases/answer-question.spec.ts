@@ -1,6 +1,6 @@
 import { describe } from 'vitest'
 import { AnswerQuestionUseCase } from './answer-question'
-import { InMemoryAnswersRepository } from '../../../../test/repositories/in-memory-answer-repository'
+import { InMemoryAnswersRepository } from '../../../../../test/repositories/in-memory-answer-repository'
 
 let inMemoryAnswerRepository: InMemoryAnswersRepository
 let sut: AnswerQuestionUseCase

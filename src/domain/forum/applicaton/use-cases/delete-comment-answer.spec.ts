@@ -1,6 +1,6 @@
-import { InMemoryAnswerCommentsRepository } from '@/test/repositories/in-memory-answer-comment-repository'
+import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comment-repository'
 import { DeleteAnswerCommentsUseCase } from './delete-comment-answer'
-import { makeAnswerComment } from '@/test/factories/make-answer-comment'
+import { makeAnswerComment } from 'test/factories/make-answer-comment'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { NotAllowedError } from './errors/not-allowed-error'
 
