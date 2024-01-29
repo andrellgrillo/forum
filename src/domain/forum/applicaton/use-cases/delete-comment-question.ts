@@ -18,7 +18,7 @@ export class DeleteQuestionCommentsUseCase {
     const questionComment =
       await this.questionCommentsRepository.findById(questionCommentId)
     if (!questionComment) {
-      console.log(questionCommentId)
+      console.log(questionComment)
       throw new Error('Question Comment not found')
     }
 

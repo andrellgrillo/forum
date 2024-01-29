@@ -15,21 +15,26 @@ describe('Delete on Question', () => {
   })
 
   it('should be able to comment on question', async () => {
+    const questionComment = makeQuestionComment()
+    await inMemoryQuestionCommentsRepository.create(questionComment)
+    await sut.execute({
+      questionCommentId: questionComment.id.toString(),
+      authorId: questionComment.authorId.toString(),
+    })
+    expect(inMemoryQuestionCommentsRepository.items).toHaveLength(0)
+  })
+  it('should not be able to delete another user question comment', async () => {
     const questionComment = makeQuestionComment({
-      questionId: new UniqueEntityID('q1'),
+      authorId: new UniqueEntityID('author-1'),
     })
 
     await inMemoryQuestionCommentsRepository.create(questionComment)
 
-    console.log(inMemoryQuestionCommentsRepository.items.length)
-
-    await sut.execute({
-      questionCommentId: 'q1',
-      authorId: questionComment.authorId.toString(),
-    })
-
-    console.log(inMemoryQuestionCommentsRepository.items.length)
-
-    expect(inMemoryQuestionCommentsRepository.items).toHaveLength(0)
+    expect(() => {
+      return sut.execute({
+        questionCommentId: questionComment.id.toString(),
+        authorId: 'author-2',
+      })
+    }).rejects.toBeInstanceOf(Error)
   })
 })

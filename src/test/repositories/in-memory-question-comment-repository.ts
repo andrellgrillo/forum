@@ -7,11 +7,11 @@ export class InMemoryQuestionCommentsRepository
   public items: QuestionComment[] = []
 
   async findById(id: string) {
-    const question = this.items.find((item) => item.id.toString() === id)
-    if (!question) {
+    const questionComment = this.items.find((item) => item.id.toString() === id)
+    if (!questionComment) {
       return null
     }
-    return question
+    return questionComment
   }
 
   async create(questionComment: QuestionComment) {
@@ -19,6 +19,10 @@ export class InMemoryQuestionCommentsRepository
   }
 
   async delete(questionComment: QuestionComment) {
-    this.items.push(questionComment)
+    const itemIndex = this.items.findIndex(
+      (item) => item.id === questionComment.id,
+    )
+
+    this.items.splice(itemIndex, 1)
   }
 }
