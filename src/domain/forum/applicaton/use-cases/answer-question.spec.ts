@@ -1,22 +1,39 @@
 import { describe } from 'vitest'
 import { AnswerQuestionUseCase } from './answer-question'
 import { InMemoryAnswersRepository } from '../../../../../test/repositories/in-memory-answer-repository'
+import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
-let inMemoryAnswerRepository: InMemoryAnswersRepository
+let inMemoryAnswersRepository: InMemoryAnswersRepository
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let sut: AnswerQuestionUseCase
 
 describe('Create Answer', () => {
   beforeEach(() => {
-    inMemoryAnswerRepository = new InMemoryAnswersRepository()
-    sut = new AnswerQuestionUseCase(inMemoryAnswerRepository)
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository()
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository,
+    )
+    sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
   })
   it('should be able to create a question', async () => {
     const result = await sut.execute({
       questionId: '1',
       instructorId: '1',
       content: 'Conteúdo da resposta',
+      attachmentIds: ['1', '2'],
     })
     expect(result.isRight()).toBe(true)
-    expect(inMemoryAnswerRepository.items[0]).toEqual(result.value?.answer)
+    expect(inMemoryAnswersRepository.items[0]).toEqual(result.value?.answer)
+    expect(
+      inMemoryAnswersRepository.items[0].attachments.currentItems,
+    ).toHaveLength(2)
+    expect(inMemoryAnswersRepository.items[0].attachments.currentItems).toEqual(
+      [
+        expect.objectContaining({ attachmentId: new UniqueEntityID('1') }),
+        expect.objectContaining({ attachmentId: new UniqueEntityID('2') }),
+      ],
+    )
   })
 })
