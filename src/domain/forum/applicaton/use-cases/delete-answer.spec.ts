@@ -2,7 +2,7 @@ import { DeleteAnswerUseCase } from './delete-answer'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
 import { makeAnswer } from 'test/factories/make-answer'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { ResourceNotFoundError } from './errors/resource-not-found'
+import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
 import { makeAnswerAttachment } from 'test/factories/make-answer-attachments'
 
